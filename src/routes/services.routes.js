@@ -137,10 +137,24 @@ router.get('/:id', async (req, res) => {
       return res.status(404).json({ message: 'Service not found or unavailable' });
     }
 
-    const technician = await users.findOne(
-      { email: service.technicianEmail },
-      { projection: { name: 1, image: 1, area: 1, bio: 1, email: 1 } }
-    );
+    const techEmail = (service.technicianEmail || '').toLowerCase();
+    const rawTechnician = techEmail
+      ? await users.findOne(
+          { email: { $regex: new RegExp(`^${techEmail.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') } },
+          { projection: { name: 1, image: 1, area: 1, bio: 1, email: 1, phone: 1, phoneNumber: 1, mobile: 1 } }
+        )
+      : null;
+
+    const technician = rawTechnician
+      ? {
+          ...rawTechnician,
+          phone:
+            rawTechnician.phone ||
+            rawTechnician.phoneNumber ||
+            rawTechnician.mobile ||
+            '',
+        }
+      : null;
 
     const reviews = await bookings
       .find(
