@@ -1,19 +1,15 @@
-### ২. `fixmate-server/README.md`
-`fixmate-server` ফোল্ডারের ভেতরে `README.md` নামে ফাইল বানিয়ে নিচের পুরো অংশটুকু পেস্ট করুন:
-
-```markdown
 # ⚙️ FixMate API Server
 
 Backend REST API for **FixMate — Smart Device & Home Appliance Repair Service Platform**, built with Node.js, Express.js, MongoDB Atlas, JWT Role-Based Access Control (RBAC), and Stripe Checkout + Webhooks.
 
 ## 🔗 Live & Repository Links
-- **Live Server URL:** `https://your-render-server.onrender.com`
-- **Live Frontend:** `https://your-vercel-app.vercel.app`
-- **Client Repository:** `https://github.com/YOUR_USERNAME/fixmate-client`
+- **Live Server URL:** [https://fixmate-server-wrsy.onrender.com](https://fixmate-server-wrsy.onrender.com)
+- **Live Frontend:** [https://fixmate-client-delta.vercel.app](https://fixmate-client-delta.vercel.app)
+- **Client Repository:** [https://github.com/nazifa-buildscodes/fixmate-client](https://github.com/nazifa-buildscodes/fixmate-client)
 
 ---
 
-## ✨ Core Backend Features & Challenges Implemented
+## ✨ Core Backend Capabilities
 
 1. **Server-Side Search, Filter, Sort & Pagination (`/api/services`):**
    MongoDB-powered query filtering by keyword, category, service mode, sorting (`price_asc`, `price_desc`, `newest`), and `.skip()` / `.limit()` pagination.
@@ -22,9 +18,9 @@ Backend REST API for **FixMate — Smart Device & Home Appliance Repair Service 
 3. **Server-Enforced Job Status Pipeline & Payment Gate:**
    Strict forward-only transitions (`requested → accepted/rejected → in-progress → completed → paid`), duplicate active booking prevention, and payment blocked unless `status === 'completed'` and `paymentStatus === 'unpaid'`.
 4. **Idempotent Stripe Checkout & Webhook:**
-   Server-side price calculation from the database (`finalAmount`), Stripe Checkout Session creation, `/api/payments/verify`, and `/api/payments/webhook` (`checkout.session.completed`) protected by a unique MongoDB index on `stripeSessionId`.
+   Server-side price calculation from the database (`finalAmount`), Stripe Checkout Session creation (`BDT`), `/api/payments/verify`, and `/api/payments/webhook` (`checkout.session.completed`) protected by a unique MongoDB index on `stripeSessionId`.
 5. **Database Architecture (4 Core Collections):**
-   `user` (BetterAuth users + role/profile fields), `services`, `bookings`, and `payments`, plus a `seed.js` script for realistic initial services.
+   `user`, `services`, `bookings`, and `payments`, plus a `seed.js` script for realistic initial services.
 
 ---
 
@@ -61,6 +57,6 @@ Backend REST API for **FixMate — Smart Device & Home Appliance Repair Service 
 
 1. Clone the repository and install dependencies:
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/fixmate-server.git](https://github.com/YOUR_USERNAME/fixmate-server.git)
+   git clone https://github.com/nazifa-buildscodes/fixmate-server.git
    cd fixmate-server
    npm install
