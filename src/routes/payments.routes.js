@@ -46,7 +46,7 @@ router.post(
         line_items: [
           {
             price_data: {
-              currency: 'usd',
+              currency: 'bdt',
               product_data: {
                 name: booking.serviceTitle,
                 description: `Repair by ${booking.technicianName} (${booking.category})`,

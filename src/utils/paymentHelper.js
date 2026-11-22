@@ -27,7 +27,7 @@ export async function recordCompletedPayment(session) {
     technicianName: booking.technicianName,
     technicianEmail: booking.technicianEmail,
     amount: booking.finalAmount,
-    currency: session.currency || 'usd',
+    currency: session.currency || 'bdt',
     transactionId:
       typeof session.payment_intent === 'string'
         ? session.payment_intent
